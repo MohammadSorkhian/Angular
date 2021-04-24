@@ -1,22 +1,48 @@
 <div class="row">
     <div class="col-xs-12">
-        <form >
+        <form [formGroup]="shoppingForm" (ngSubmit)='onAddClicked()'>
             <div class="row">
                 <div class="col-sm-5 form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" class="form-control" #nameInput>
+                    <input 
+                    type="text" 
+                    id="name" 
+                    class="form-control" 
+                    [formControlName]="'name'"
+                    #nameInput>
+                    <span *ngIf="!shoppingForm.controls.name.valid && shoppingForm.controls.name.touched">Please Enter the Ingredient name</span>
                 </div>
                 <div class="col-sm-2 form-group">
-                    <label for="amount">Amount</label>
-                    <input type="number" id="amount" class="form-control" #amountInput>
+                    <label for="amount" >Amount</label>
+                    <input 
+                    type="number" 
+                    id="amount" 
+                    class="form-control" 
+                    [formControlName]="'amount'"
+                    #amountInput>
+                    <span *ngIf="!shoppingForm.controls.amount.valid && 
+                                  shoppingForm.controls.amount.touched &&
+                                  shoppingForm.controls.amount.errors.required">Please Enter the Amount</span>
+                    <span *ngIf="!shoppingForm.controls.amount.valid && 
+                                  shoppingForm.controls.amount.touched &&
+                                  shoppingForm.controls.amount.errors.invalidAmount &&
+                                 !shoppingForm.controls.amount.errors.required">Amount is Invalid</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button class="btn btn-success" type="submit" (click)="onAddItem()">Add</button>
-                    <button class="btn btn-danger" type="button">Delete</button>
-                    <button class="btn btn-primary" type="button">Clear</button>
+                    <button 
+                    class="btn btn-success" 
+                    type="submit"
+                    [disabled]="!shoppingForm.valid">{{editMode? 'Update': 'add'}}</button>
+                    <button 
+                    class="btn btn-danger" 
+                    type="button" 
+                    (click)="onDeleteClicked()" 
+                    [disabled]="!editMode">Delete</button>
+                    <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
                 </div>
+                <!-- (click)="onAddItem()" -->
             </div>
         </form>
     </div>
