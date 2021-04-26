@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListsService } from '../shopping-list/shopping-lists.service';
@@ -7,27 +7,28 @@ import { Recipe } from './recipe.model';
 @Injectable({
   providedIn: 'root'
 })
-export class RecipesService {
+export class RecipesService{
 
   addToShoppingList:Ingredient[];
   recipeChanged = new Subject<Recipe[]>();
 
   private recipes:Recipe[] = [
-    new Recipe("A Test",
-     "This is simply a test",
-      "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?webp=true&quality=90&resize=620%2C563",
-      [
-        new Ingredient('meat',1),
-        new Ingredient('French Fries', 20),
-    ]),
-    new Recipe("Another Test",
-     "This is simply a test",
-      "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?webp=true&quality=90&resize=620%2C563",
-      [
-        new Ingredient('buns', 2),
-        new Ingredient('meat', 1)
-      ]),
+    // new Recipe("A Test",
+    //  "This is simply a test",
+    //   "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?webp=true&quality=90&resize=620%2C563",
+    //   [
+    //     new Ingredient('meat',1),
+    //     new Ingredient('French Fries', 20),
+    // ]),
+    // new Recipe("Another Test",
+    //  "This is simply a test",
+    //   "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?webp=true&quality=90&resize=620%2C563",
+    //   [
+    //     new Ingredient('buns', 2),
+    //     new Ingredient('meat', 1)
+    //   ]),
   ];
+
 
   constructor(private shoppingListService:ShoppingListsService) {
    }
@@ -59,10 +60,10 @@ export class RecipesService {
     this.recipes.splice(id,1);
     this.recipeChanged.next(this.recipes.slice());
   }
-
-  // updateRecipeIngredient(indexIngredient: number, indexRecipe: number ){
-  //   this.recipes[indexRecipe].ingredient.splice(indexIngredient,1)
-  //   this.recipeChanged.next(this.recipes.slice());
-  // }
+  
+  public setRecipes(recipes:Recipe[]){
+    this.recipes = recipes;
+    this.recipeChanged.next(this.recipes.slice());
+  }
 
 }
