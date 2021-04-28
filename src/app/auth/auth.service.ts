@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { User } from './user.model';
 
 interface responseDataSignupLogin {
@@ -27,7 +28,7 @@ export class AuthService {
   private timeoutRef:any;
 
   signUp(email: string, password: string) {
-    return this.http.post<responseDataSignupLogin>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDWGKtnm-5eZ0NBOgh7Wj17VGoLxFeCJsU"
+    return this.http.post<responseDataSignupLogin>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + environment.firebaseAPIKey
       , {
         email: email,
         password: password,
@@ -45,7 +46,7 @@ export class AuthService {
 
 
   login(email: string, password: string) {
-    return this.http.post<responseDataSignupLogin>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDWGKtnm-5eZ0NBOgh7Wj17VGoLxFeCJsU'
+    return this.http.post<responseDataSignupLogin>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey
       , {
         email: email,
         password: password,

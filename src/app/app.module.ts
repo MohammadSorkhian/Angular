@@ -20,6 +20,7 @@ import { RecipesService } from './recipes/recipes.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnersComponent } from './shared/loading-spinners/loading-spinners.component';
 import { AlertComponent } from './shared/alert/alert.component';
+import {environment} from '../environments/environment'
 
 @NgModule({
   declarations: [
