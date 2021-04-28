@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { HeaderComponentComponent } from './Header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
+import { RecipesComponent } from './recipes/recipes.components';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
@@ -15,8 +15,10 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListsService } from './shopping-list/shopping-lists.service';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RecipeEditComponent } from './recipes/recipe-detail/recipe-edit/recipe-edit.component';
 import { RecipesService } from './recipes/recipes.service';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnersComponent } from './shared/loading-spinners/loading-spinners.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { RecipesService } from './recipes/recipes.service';
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
+    AuthComponent,
+    LoadingSpinnersComponent,
   ],
   imports: [
     BrowserModule,
