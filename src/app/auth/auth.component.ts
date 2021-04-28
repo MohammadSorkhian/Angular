@@ -67,6 +67,9 @@ export class AuthComponent implements OnInit {
     }, 500);
   }
 
+  clearAlert() {
+    this.error = null;
+  }
 
 
 }

@@ -1,8 +1,9 @@
 <div class="row">
     <div class="col-xs-12">
-        <div class="alert alert-danger" *ngIf="error">{{error}}</div>
-        <div>
-            <app-loading-spinners *ngIf="isLoading"></app-loading-spinners>
+        <!-- <div class="alert alert-danger" *ngIf="error">{{error}}</div> -->
+        <app-alert [message]="error" *ngIf="error" (closeEvent) = "clearAlert()"></app-alert>
+        <div *ngIf="isLoading">
+            <app-loading-spinners></app-loading-spinners>
         </div>
         <form [formGroup] = "loginForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
             <div class="form-group">
